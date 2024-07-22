@@ -28,6 +28,20 @@ Clonare repository-ului în directorul local:
 git clone https://github.com/pistiro/Veziv.ro.git
 cd Veziv.ro
 
+## Creare database Docker
+docker run --name database_name -e POSTGRES_USER=database_user -e POSTGRES_PASSWORD=database_password -e POSTGRES_DB=My_database -p 5432:5432 -v postgres_data:/var/lib/postgresql/data -d postgres:latest
+
+## Creare tabel in DB
+CREATE TABLE ticket (
+    id SERIAL PRIMARY KEY,
+    number INTEGER UNIQUE NOT NULL,
+    purchased BOOLEAN DEFAULT FALSE
+);
+
+## Popularea tabelului
+INSERT INTO ticket (number, purchased) VALUES (1, FALSE);
+INSERT INTO ticket (number, purchased) VALUES (2, TRUE);
+
 ## Instalare
 pip install -r requirements.txt
 
