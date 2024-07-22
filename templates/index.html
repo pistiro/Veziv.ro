@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tombola</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Tombola</h1>
+    <h2>Bilete disponibile</h2>
+    <ul>
+        {% for ticket in tickets %}
+            <li>
+                Bilet #{{ ticket.number }} - 
+                {% if ticket.purchased %}
+                    <strong>Vândut</strong>
+                {% else %}
+                    <a href="{{ url_for('buy_ticket', ticket_id=ticket.id) }}">Cumpără</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('draw') }}">Extrage câștigător</a>
+</body>
+</html>
